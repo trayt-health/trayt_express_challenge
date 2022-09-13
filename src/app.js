@@ -1,5 +1,8 @@
-const express = require('express')
 const cors = require('cors')
+const express = require('express')
+
+const config = require('./config')
+
 const {
   getRatedMovies,
   getRecommendationByDirector,
@@ -8,12 +11,11 @@ const {
   getSavedRecommendations,
 } = require('./helperFunctions')
 
-const LISTENING_PORT = 9000
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 
-const server = app.listen(LISTENING_PORT, function () {
-  console.log(`Server is listening on ${LISTENING_PORT}`)
+app.listen(config.LISTENING_PORT, () => {
+  console.log(`Server is listening on ${config.LISTENING_PORT}`)
 })
