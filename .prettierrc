@@ -2,5 +2,5 @@
   "trailingComma": "es5",
   "singleQuote": true,
   "arrowParens": "always",
-  "semi": false
+  "semi": true
 }
