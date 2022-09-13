@@ -1,5 +1,5 @@
 function getMovieRecommendation(userId) {
-  return new Promise((resolve, rejecjt) => {
+  return new Promise((resolve, reject) => {
     resolve(['Inception']);
   });
 }
