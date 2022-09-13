@@ -6,6 +6,8 @@ const {
   getSavedRecommendations,
 } = require('../helperFunctions');
 
+// #region Internal functions
+
 function getFavDirector(ratedMovies) {
   return 'Niki Caro';
 }
@@ -15,18 +17,12 @@ function getFavGenre(ratedMovies) {
 }
 
 /**
- * Get a list of movies recommended for a user.
+ * Generate recommendation for a given userId
  *
- * @param {string} userId: userId
- * @returns: List of movies
+ * @param {string} userId: UserId of a user
+ * @returns: List of movie recommendations
  */
-async function getMovieRecommendation(userId) {
-  const savedRecommendations = await getSavedRecommendations(userId);
-
-  if (savedRecommendations && savedRecommendations.length > 0) {
-    return savedRecommendations;
-  }
-
+async function generateRecommendation(userId) {
   const ratedMovies = await getRatedMovies(userId);
 
   const favDirector = getFavDirector(ratedMovies);
@@ -47,6 +43,27 @@ async function getMovieRecommendation(userId) {
 
   return recommendations;
 }
+
+// #endregion
+
+// #region exposed Service funtions
+/**
+ * Get a list of movies recommended for a user.
+ *
+ * @param {string} userId: userId
+ * @returns: List of movies
+ */
+async function getMovieRecommendation(userId) {
+  const savedRecommendations = await getSavedRecommendations(userId);
+
+  if (savedRecommendations && savedRecommendations.length > 0) {
+    return savedRecommendations;
+  }
+
+  return generateRecommendation(userId);
+}
+
+// #endregion
 
 module.exports = {
   getMovieRecommendation,

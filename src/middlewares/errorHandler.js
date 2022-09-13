@@ -28,6 +28,7 @@ function methodNotAllowed(req, res) {
  * @param  {Function} next
  */
 function genericErrorHandler(err, req, res, next) {
+  logger.error(err);
   const error = buildError(err);
 
   res.status(error.code).json({ error });
