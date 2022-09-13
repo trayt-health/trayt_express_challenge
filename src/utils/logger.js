@@ -3,7 +3,7 @@ function error(message) {
 }
 
 function info(message) {
-  console.log(`INO: ${message}`);
+  console.log(`INFO: ${message}`);
 }
 
 module.exports = {
