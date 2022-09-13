@@ -30,6 +30,12 @@ function getFavGenre(ratedMovies) {
   return objectUtil.getMode(ratedMovies, 'genres');
 }
 
+function filterRatedMovies(ratedMovies, movies) {
+  const ratedMovieIds = ratedMovies.map((movie) => movie.id);
+
+  return movies.filter((movie) => !ratedMovieIds.includes(movie.id));
+}
+
 /**
  * Generate recommendation for a given userId
  *
@@ -51,9 +57,8 @@ async function generateRecommendation(userId) {
   ]);
 
   const recommendations = [...favDirectorMovies, ...favGenreMovies];
-  // Filter out movies in byDirector and byGenre that's already in the user's ratedMovies. (Because that means the user already watched it)
 
-  return recommendations;
+  return filterRatedMovies(ratedMovies, recommendations);
 }
 
 // #endregion
