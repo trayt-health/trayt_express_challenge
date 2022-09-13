@@ -3,6 +3,7 @@ const express = require('express');
 
 const routes = require('./routes');
 const config = require('./config');
+const errorHandler = require('./middlewares/errorHandler');
 
 const {
   getRatedMovies,
@@ -19,6 +20,10 @@ app.use(express.json());
 
 // API Routes
 app.use('/', routes);
+
+// Error Middlewares
+app.use(errorHandler.genericErrorHandler);
+app.use(errorHandler.methodNotAllowed);
 
 app.listen(config.LISTENING_PORT, () => {
   console.log(`Server is listening on ${config.LISTENING_PORT}`);

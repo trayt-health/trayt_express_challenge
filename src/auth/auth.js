@@ -43,11 +43,15 @@ function getTokenFromHeaders(req) {
  * @param {Object} next: Provided by express
  */
 function validateUser(req, res, next) {
-  const token = getTokenFromHeaders(req);
+  try {
+    const token = getTokenFromHeaders(req);
 
-  req.userId = '9aaec1fc-ea13-4783-81f8-a998c1e0d648';
+    req.userId = '9aaec1fc-ea13-4783-81f8-a998c1e0d648';
 
-  next();
+    next();
+  } catch (err) {
+    next(err);
+  }
 }
 
 module.exports = {
