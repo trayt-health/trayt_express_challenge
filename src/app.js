@@ -5,14 +5,6 @@ const routes = require('./routes');
 const config = require('./config');
 const errorHandler = require('./middlewares/errorHandler');
 
-const {
-  getRatedMovies,
-  getRecommendationByDirector,
-  getRecommendationByGenre,
-  saveRecommendations,
-  getSavedRecommendations,
-} = require('./helperFunctions');
-
 const app = express();
 
 app.use(cors());
