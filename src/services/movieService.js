@@ -30,6 +30,14 @@ function getFavGenre(ratedMovies) {
   return objectUtil.getMode(ratedMovies, 'genres');
 }
 
+/**
+ * Filter out movies from the movies that has already been rated
+ *
+ * @param {Array} ratedMovies: List of rated movies
+ * @param {Array} movies: List of recommended movies
+ *
+ * @returns: Filtered list of movies that have not been rated
+ */
 function filterRatedMovies(ratedMovies, movies) {
   const ratedMovieIds = ratedMovies.map((movie) => movie.id);
 
@@ -44,9 +52,10 @@ function filterRatedMovies(ratedMovies, movies) {
  */
 async function generateRecommendation(userId) {
   const ratedMovies = await getRatedMovies(userId);
+  const highlyRatedMovies = ratedMovies.filter((movie) => movie.userRating > 7);
 
-  const favDirector = getFavDirector(ratedMovies);
-  const favGenre = getFavGenre(ratedMovies);
+  const favDirector = getFavDirector(highlyRatedMovies);
+  const favGenre = getFavGenre(highlyRatedMovies);
 
   const favDirectorMoviesPromise = getRecommendationByDirector(favDirector);
   const favGenreMoviesPromise = getRecommendationByGenre(favGenre);
