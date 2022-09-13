@@ -1,3 +1,5 @@
+const objectUtil = require('../utils/objectUtil');
+
 const {
   getRatedMovies,
   getRecommendationByDirector,
@@ -8,12 +10,24 @@ const {
 
 // #region Internal functions
 
+/**
+ * Filter the fav director based on user's rated movies
+ *
+ * @param {Array} ratedMovies: LIst of moves
+ * @returns: Fav Director
+ */
 function getFavDirector(ratedMovies) {
-  return 'Niki Caro';
+  return objectUtil.getMode(ratedMovies, 'director');
 }
 
+/**
+ * Filter the fav genre based on user's rated movies
+ *
+ * @param {Array} ratedMovies: LIst of moves
+ * @returns: Fav Genre
+ */
 function getFavGenre(ratedMovies) {
-  return 'Action';
+  return objectUtil.getMode(ratedMovies, 'genres');
 }
 
 /**
@@ -36,10 +50,8 @@ async function generateRecommendation(userId) {
     favGenreMoviesPromise,
   ]);
 
-  const recommendations = favDirectorMovies.concat(favGenreMovies);
+  const recommendations = [...favDirectorMovies, ...favGenreMovies];
   // Filter out movies in byDirector and byGenre that's already in the user's ratedMovies. (Because that means the user already watched it)
-
-  saveRecommendations(userId, recommendations);
 
   return recommendations;
 }
@@ -60,7 +72,11 @@ async function getMovieRecommendation(userId) {
     return savedRecommendations;
   }
 
-  return generateRecommendation(userId);
+  const recommendations = await generateRecommendation(userId);
+
+  saveRecommendations(userId, recommendations);
+
+  return recommendations;
 }
 
 // #endregion
