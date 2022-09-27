@@ -1,12 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const {
-  getRatedMovies,
-  getRecommendationByDirector,
-  getRecommendationByGenre,
-  saveRecommendations,
-  getSavedRecommendations,
-} = require('./helperFunctions')
 
 const LISTENING_PORT = 9000;
 const app = express();

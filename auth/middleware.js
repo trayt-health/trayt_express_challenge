@@ -1,4 +1,4 @@
-const { authenticateUser } = require("./user_auth");
+const { authenticateUser } = require("./userAuth");
 
 const bearerTokenPrefix = "Bearer ";
 
