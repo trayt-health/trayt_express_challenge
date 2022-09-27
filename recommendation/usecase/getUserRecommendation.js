@@ -9,6 +9,25 @@ const {
 const favourableMovieMinScore = 7;
 
 async function getUserRecommendations(userID) {
+    const previouslySavedRecommendations = await getSavedRecommendations(userID);
+    const hasSavedRecommendation = previouslySavedRecommendations !== null && previouslySavedRecommendations !== undefined;
+
+    if (hasSavedRecommendation) {
+        return previouslySavedRecommendations;
+    }
+
+    const newlyGeneratedUserRecommendations = await generateUserRecommendations(userID);
+    try {
+        await saveRecommendations(userID, newlyGeneratedUserRecommendations);
+    } catch (e) {
+        // do not let writing to cache failure prevent the user from getting recommendations
+        console.error(e);
+    }
+
+    return newlyGeneratedUserRecommendations;
+}
+
+async function generateUserRecommendations(userID) {
     const ratedMovies = await getRatedMovies(userID);
     const favourableMovies = filterToFavourableMovies(ratedMovies);
 
