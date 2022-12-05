@@ -151,11 +151,8 @@ A helper function `getSavedRecommendations(userId)` should be used to get user's
 
 ## Github branch
 There are a couple of options on how to share the code with us:- 
-1. Please fork the repository on your local machine, make your changes and then commit to **your** private github repository.
-Once complete, please add the following github users to your private repo:
-- jcasner
-- harshnak
-- kgiberson
+1. Please fork the repository on your local machine, make your changes and then commit to **your** github repository.
+Once complete, please send us the link of your repository. 
 
 2. If you do not want to upload in you private repo, please email us the zip file of the code. 
 
