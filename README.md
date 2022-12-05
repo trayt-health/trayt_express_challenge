@@ -1,16 +1,17 @@
-# Trayt express.js coding challenge
-
-To start the express server, run:
-
-`npm install`
-
-and then
-
-`npm start`
-
-# Coding Challenge
-
+# Trayt express.js Coding Challenge
 Please read through this document before you start
+## Setup
+1. Create a new private Github repository named: `trayt_express_challenge_${yourLastName}`
+2. Follow instructions for [Duplicating a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository)
+3. 
+    To start the express server, run:
+
+    `npm install`
+
+    and then
+
+    `npm start`
+
 
 ## Requirements
 
@@ -149,12 +150,17 @@ A helper function `saveRecommendations(userId, recommendation)` should be used t
 A helper function `getSavedRecommendations(userId)` should be used to get user's `recommendation` if it is already saved.
 
 
-## Github branch
-There are a couple of options on how to share the code with us:- 
-1. Please fork the repository on your local machine, make your changes and then commit to **your** github repository.
-Once complete, please send us the link of your repository. 
+## Share your project with Trayt.Health
+### **Important!:** Make sure your repository is **not public** and that your code is not pushed to the original public repository.
+
+There are a couple of options on how to share your code with us:
+1. Once complete, please add the following github users to your private repo:
+- jcasner
+- harshnak
+- kgiberson
 
 2. If you do not want to upload in you private repo, please email us the zip file of the code. 
+
 
 ## What we are looking for in this coding challenge
 1. Able to understand requirements and build basic routes in express.js
